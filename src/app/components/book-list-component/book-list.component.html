@@ -1,13 +1,13 @@
-
-<div class="card-group">
+<app-card>
   @for(book of books; track book.id){
-  <app-card>
-    <div class="card">
-      <img class="card-img-top" [src]="book.cover_image" alt="Card image cap" />
-      <h3 class="card-title">{{ book.title }}</h3>
-      <span>By {{ book.author }}</span>
-      <button (click)="OpenDetails(book.id)">For Details</button>
+
+  <div class="card" style="width: 20rem">
+    <img src="..." class="card-img-top" [src]="book.cover_image" />
+    <div class="card-body">
+      <h5 class="card-title">{{ book.title }}</h5>
+      <p class="card-text">By {{ book.author }}</p>
+      <a (click)="OpenDetails(book.id)" class="btn btn-primary">For Details</a>
     </div>
-  </app-card>
+  </div>
   }
-</div>
+</app-card>

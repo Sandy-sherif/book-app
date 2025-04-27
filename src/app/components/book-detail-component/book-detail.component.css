@@ -9,12 +9,7 @@
 }
 
 .left{
-    display: flex;
-    flex-direction: row;
     margin-right: 3%;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
 }
 
 .left img{
@@ -27,7 +22,7 @@
 .right{
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: left;
     flex-direction: column;
 }
 
@@ -42,10 +37,10 @@
     justify-content: center;
 }
 span{
-    color:darkgreen;
+    color:#595959;
 
 }
-p{
+li{
     margin: 10px;
     
 }
