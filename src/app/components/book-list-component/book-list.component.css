@@ -7,3 +7,10 @@ img {
   height: 50vh;
   border-radius: 0.5em;
 }
+a{
+  background-color: #7b006b;
+  color: white;
+}
+a:hover{
+  background-color: #944d8a;
+}

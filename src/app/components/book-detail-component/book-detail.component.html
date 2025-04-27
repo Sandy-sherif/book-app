@@ -1,15 +1,12 @@
 <app-card>
   @if(book){
-  <div class="content">
-    <div class="left">
-      <img [src]="book.cover_image" />
-    </div>
-    <div class="right">
-      <div class="title">
-        <h2 align="center">{{ book.title }}</h2>
-        <span align="center">By {{ book.author }}</span>
-      </div>
-      <ul type="none">
+  <div class="card flex-row ">
+    <img class="card-img-left example-card-img-responsive" 
+    [src]="book.cover_image"/>
+    <div class="card-body">
+      <h2 class="card-title h2 ">{{ book.title }}</h2>
+      <span>By {{ book.author }}</span>
+      <ul type="none" class="mt-5">
         <li>Description : {{ book.description }}</li>
         <li>Author : {{ book.author }}</li>
         <li>Publication Year : {{ book.publication_year }}</li>
