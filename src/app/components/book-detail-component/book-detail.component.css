@@ -2,7 +2,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: row;
     margin:10%;
     width: 80vw;
     flex-wrap: wrap;
@@ -13,7 +12,7 @@
 }
 
 .left img{
-    height: 60vh;
+    height: 70vh;
     border-radius: 0.5em;
     display: flex;
     justify-content: center;
@@ -42,5 +41,4 @@ span{
 }
 li{
     margin: 10px;
-    
 }

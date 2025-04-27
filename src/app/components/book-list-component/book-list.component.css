@@ -1,32 +1,9 @@
-.card-group{
-    display: flex;
-    justify-content: space-evenly;
-    margin: 1%;
-    flex-wrap: wrap;
+.card {
+  padding: 16px;
+  text-align: center;
+  margin: 1%;
 }
-
-  .card {
-    display: flex;
-    padding: 16px;
-    text-align: center;
-    margin: 1%;
-    flex-direction: column;
-    align-items: center;
-  }
-  img{
-    height: 30vh;
-    border-radius: 0.5em;
-    display: flex;
-    margin-bottom: 10px;
-    justify-content: center;
-    align-items: center;
-  }
-
-  button{
-    background: color #f2f2f2; ;
-    cursor: pointer;
-    border: none;
-    border-radius: 3px;
-    height: 30px;
-    width: 140px;
-  }
+img {
+  height: 50vh;
+  border-radius: 0.5em;
+}
