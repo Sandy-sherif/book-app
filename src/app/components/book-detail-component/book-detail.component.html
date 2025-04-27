@@ -1,0 +1,22 @@
+<app-card>
+@if(book){
+<div class="content">
+  
+  <div class="left">
+    <img [src]="book.cover_image" />
+  </div>
+  <div class="right">
+    <div class="title">
+      <h2 align="center">{{ book.title }}</h2>
+      <span align="center">By {{ book.author }}</span>
+    </div>
+    
+    <p>Description : {{ book.description }}</p>
+    <p>Author : {{ book.author }}</p>
+    <p>Publication Year : {{ book.publication_year }}</p>
+    <p>Genre : {{ book.genre }}</p>
+    
+  </div>
+</div>
+}
+</app-card>
