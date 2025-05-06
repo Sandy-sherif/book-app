@@ -17,8 +17,12 @@ export class BookListComponent implements OnInit {
   ngOnInit() {
     this.bookService.fetchBooks();
   }
-  OpenDetails(id: String) {
+  openDetails(id: String) {
     console.log('ana id list', id);
     this.router.navigate(['BookDetails', id]);
+  }
+  onDelete(id: string){
+    this.bookService.deleteBook(id);
+    this.bookService.fetchBooks();
   }
 }

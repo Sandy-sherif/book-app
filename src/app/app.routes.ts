@@ -10,7 +10,7 @@ import { AuthComponent } from './components/auth/auth.component';
 export const routes: Routes = [
 
 
-    {path: '', pathMatch: "full", redirectTo : 'BookList'},
+    {path: '', pathMatch: "full", redirectTo : 'auth'},
     {path: 'BookList', component: BookListComponent},
     {path: 'addBook', component: AddBookComponent},
     {path: 'editBook/:id', component: EditBookComponent},

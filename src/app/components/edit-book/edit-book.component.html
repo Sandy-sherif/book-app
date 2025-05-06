@@ -8,8 +8,13 @@
         id="title"
         placeholder="Title"
         name="title"
+        #title="ngModel"
         [(ngModel)]="book.title"
+        required
       />
+      @if(!title.valid && title.touched){
+        <span class="help-block">Please enter a title</span>
+        }
     </div>
     <div class="form-group col-md-6">
       <label for="author">Author</label>
@@ -20,7 +25,12 @@
         placeholder="Author"
         name="author"
         [(ngModel)]="book.author"
+        #author="ngModel"
+        required
       />
+      @if(!author.valid && author.touched){
+      <span class="help-block">Please enter a author</span>
+      }
     </div>
   </div>
   <div class="form-group">
@@ -34,13 +44,19 @@
       placeholder="1976"
       name="publicationYear"
       [(ngModel)]="book.publicationYear"
+      #publicationYear="ngModel"
+      required
     />
+    @if(!publicationYear.valid && publicationYear.touched){
+    <span class="help-block">Please enter a valid publication year</span>
+    }
   </div>
   <div class="form-group">
     <select
       class="custom-select"
       name="genre"
       [(ngModel)]="book.genre"
+      #genre="ngModel"
       multiple
       required
     >
@@ -51,6 +67,9 @@
       <option value="Adventure">Adventure</option>
       <option value="Fantasy">Fantasy</option>
     </select>
+    @if(!genre.valid && genre.touched){
+      <span class="help-block">Please select genre</span>
+      }
   </div>
   <div class="form-group">
     <label for="description">Description</label>
@@ -60,19 +79,12 @@
       rows="3"
       name="description"
       [(ngModel)]="book.description"
+      #description="ngModel"
+      ngModel
     ></textarea>
+    @if(!description.valid && description.touched){
+    <span class="help-block">Please enter a desription</span>
+    }
   </div>
-  <!--  <div class="custom-file">
-    <input
-      type="file"
-      class="custom-file-input"
-      id="imgSrc"
-      name="coverImage"
-      [(ngModel)]="book.coverImage"
-      required
-    />
-    <label class="custom-file-label" for="imgSrc">Choose file...</label>
-  </div>
- -->
   <button type="submit" class="btn btn-primary">Edit</button>
 </form>

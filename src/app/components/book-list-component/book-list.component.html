@@ -18,7 +18,8 @@
     <div class="card-body">
       <h5 class="card-title">{{ book.title }}</h5>
       <p class="card-text">By {{ book.author }}</p>
-      <a (click)="OpenDetails(book.id)" class="btn btn-color">For Details</a>
+      <a (click)="openDetails(book.id)" class="btn btn-color">For Details</a>
+      <a (click)="onDelete(book.id)" class="btn btn-danger">Delete</a>
     </div>
   </div>
   }
