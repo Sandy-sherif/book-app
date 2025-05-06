@@ -10,18 +10,24 @@ import { BookService } from '../../services/book.service';
   styleUrl: './book-detail.component.css',
 })
 export class BookDetailComponent implements OnInit {
-  id!: number;
   book?: book;
+  id!: string;
 
   constructor(
-    private _activatedroute: ActivatedRoute,
-    private _bookservice: BookService
+    private activatedroute: ActivatedRoute,
+    private bookService: BookService
   ) {}
 
   ngOnInit() {
-    this._activatedroute.paramMap.subscribe((paramMap) => {
-      this.id = Number(paramMap.get('id'));
-      this.book = this._bookservice.books.find((book) => book.id == this.id);
+    this.activatedroute.paramMap.subscribe((paramMap) => {
+      const id = paramMap.get('id');
+      this.bookService.books.find((book) => {
+        console.log(book.id === id);
+        if (book.id === id) {
+          this.book = book;
+          this.id = book.id;
+        }
+      });
     });
   }
 }

@@ -1,9 +1,9 @@
 export interface book {
-    id: number,
+    id: string,
     title: string,
     author: string,
-    publication_year: number,
+    publicationYear: string,
     genre: string[],
     description: string,
-    cover_image: string
+    coverImage: string
 }

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
 import { book } from '../../Models/book.interface';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -9,13 +9,16 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './book-list.component.html',
   styleUrl: './book-list.component.css',
 })
-export class BookListComponent {
-  books: book[];
+export class BookListComponent implements OnInit {
+  filteredTitle = '';
 
-  constructor(private _bookService: BookService, private _router: Router) {
-    this.books = _bookService.books;
+  constructor(public bookService: BookService, private router: Router) {}
+
+  ngOnInit() {
+    this.bookService.fetchBooks();
   }
-  OpenDetails(id: number) {
-    this._router.navigate(['BookDetails', id]);
+  OpenDetails(id: String) {
+    console.log('ana id list', id);
+    this.router.navigate(['BookDetails', id]);
   }
 }

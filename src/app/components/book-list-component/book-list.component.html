@@ -1,11 +1,24 @@
+<div class="d-flex justify-content-between">
+  <button type="button" class="btn btn-primary" routerLink="/addBook">
+    Add Book
+  </button>
+  <div>
+    <label for="search">Search by title</label>
+    <input id="search" name="search" type="text" [(ngModel)]="filteredTitle" />
+  </div>
+</div>
+
 <app-card>
-  @for(book of books; track book.id){
-  <div class="card" style="width: 20rem">
-    <img src="..." class="card-img-top" [src]="book.cover_image" />
+  <!-- @if(bookService.books.length < 1 ){
+  <h1>No posts available</h1>
+  } --> @for(book of bookService.books | filter:filteredTitle:'title'; track
+  book.id){
+  <div class="card w-25 h-25">
+    <img  class="card-img-top rounded w-75 h-75 " alt="cover image" [src]="book.coverImage | slice : 12" />
     <div class="card-body">
       <h5 class="card-title">{{ book.title }}</h5>
       <p class="card-text">By {{ book.author }}</p>
-      <a (click)="OpenDetails(book.id)" class="btn">For Details</a>
+      <a (click)="OpenDetails(book.id)" class="btn btn-color">For Details</a>
     </div>
   </div>
   }

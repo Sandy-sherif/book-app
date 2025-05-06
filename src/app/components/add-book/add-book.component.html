@@ -1,0 +1,117 @@
+<form (ngSubmit)="onSubmit(addBookForm)" #addBookForm="ngForm">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        placeholder="Title"
+        name="title"
+        ngModel
+        #title="ngModel"
+        required
+      />
+      @if(!title.valid && title.touched){
+      <span class="help-block">Please enter a title</span>
+      }
+    </div>
+    <div class="form-group col-md-6">
+      <label for="author">Author</label>
+      <input
+        type="text"
+        class="form-control"
+        id="author"
+        placeholder="Author"
+        name="author"
+        ngModel
+        #author="ngModel"
+        required
+      />
+      @if(!author.valid && author.touched){
+      <span class="help-block">Please enter a author</span>
+      }
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="publicationYear">Publication year</label>
+    <input
+      type="number"
+      min="1900"
+      max="2025"
+      class="form-control"
+      id="publicationYear"
+      placeholder="Enter year"
+      name="publicationYear"
+      ngModel
+      #publicationYear="ngModel"
+      required
+    />
+    @if(!publicationYear.valid && publicationYear.touched){
+    <span class="help-block">Please enter a valid publication year</span>
+    }
+  </div>
+  <div class="form-group">
+    <select
+      class="custom-select"
+      name="genre"
+      ngModel
+      #genre="ngModel"
+      multiple
+      required
+    >
+      <option value="">Select Genre:</option>
+      <option value="Fiction">Fiction</option>
+      <option value="Classic">Classic</option>
+      <option value="Romance">Romance</option>
+      <option value="Adventure">Adventure</option>
+      <option value="Fantasy">Fantasy</option>
+    </select>
+    @if(!genre.valid && genre.touched){
+    <span class="help-block">Please select genre</span>
+    }
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea
+      class="form-control"
+      id="description"
+      rows="3"
+      name="description"
+      required
+      #description="ngModel"
+      ngModel
+    ></textarea>
+    @if(!description.valid && description.touched){
+    <span class="help-block">Please enter a desription</span>
+    }
+  </div>
+  <div class="custom-file">
+    <input
+      type="file"
+      class="custom-file-input"
+      id="imgSrc"
+      name="coverImage"
+      accept="image/*"
+      #coverImage="ngModel"
+      ngModel
+      required
+    />
+    <label class="custom-file-label" for="imgSrc">Choose file...</label>
+    @if(!coverImage.valid && coverImage.touched){
+    <span class="help-block">Please select image</span>
+    }
+  </div>
+  <div class="d-flex justify-content-between">
+    <button
+      [disabled]="addBookForm.invalid"
+      type="submit"
+      class="btn btn-primary"
+    >
+      Add
+    </button>
+    <button type="button" class="btn btn-primary" [routerLink]="['/']">
+      Return to list of books
+    </button>
+  </div>
+</form>

@@ -1,16 +1,30 @@
 <app-card>
   @if(book){
-  <div class="card flex-row ">
-    <img class="card-img-left example-card-img-responsive" 
-    [src]="book.cover_image"/>
+  <div class="card flex-row">
+    <img
+      class="card-img-left example-card-img-responsive" alt="cover image"
+      [src]="book.coverImage | slice : 12"
+    />
     <div class="card-body">
-      <h2 class="card-title h2 ">{{ book.title }}</h2>
+      <h2 class="card-title h2">{{ book.title }}</h2>
       <span>By {{ book.author }}</span>
       <ul type="none" class="mt-5">
-        <li>Description : {{ book.description }}</li>
-        <li>Author : {{ book.author }}</li>
-        <li>Publication Year : {{ book.publication_year }}</li>
-        <li>Genre : {{ book.genre }}</li>
+        <li class="m-2">Description : {{ book.description }}</li>
+        <li class="m-2">Author : {{ book.author }}</li>
+        <li class="m-2">Publication Year : {{ book.publicationYear }}</li>
+        <li class="m-2">Genre : {{ book.genre }}</li>
+        <div class="d-flex flex-column">
+          <button
+            type="button"
+            class="btn btn-primary m-3"
+            [routerLink]="['/editBook/', id]"
+          >
+            Edit
+          </button>
+          <button type="button" class="btn btn-primary" [routerLink]="['/']">
+            Return to list of books
+          </button>
+        </div>
       </ul>
     </div>
   </div>
