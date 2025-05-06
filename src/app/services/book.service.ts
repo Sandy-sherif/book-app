@@ -72,7 +72,7 @@ export class BookService {
         },
       });
   }
-  deleteBook( id: string) {
+  deleteBook(id: string) {
     return this.http
       .delete(
         'https://book-app-48750-default-rtdb.firebaseio.com/books/' +

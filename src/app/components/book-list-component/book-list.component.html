@@ -9,12 +9,13 @@
 </div>
 
 <app-card>
-  <!-- @if(bookService.books.length < 1 ){
-  <h1>No posts available</h1>
-  } --> @for(book of bookService.books | filter:filteredTitle:'title'; track
-  book.id){
+  @for(book of bookService.books | filter:filteredTitle:'title'; track book.id){
   <div class="card w-25 h-25">
-    <img  class="card-img-top rounded w-75 h-75 " alt="cover image" [src]="book.coverImage | slice : 12" />
+    <img
+      class="card-img-top rounded w-75 h-75"
+      alt="cover image"
+      [src]="book.coverImage | slice : 12"
+    />
     <div class="card-body">
       <h5 class="card-title">{{ book.title }}</h5>
       <p class="card-text">By {{ book.author }}</p>

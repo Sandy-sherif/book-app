@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookService } from '../../services/book.service';
-import { book } from '../../Models/book.interface';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-list',
@@ -18,10 +17,9 @@ export class BookListComponent implements OnInit {
     this.bookService.fetchBooks();
   }
   openDetails(id: String) {
-    console.log('ana id list', id);
-    this.router.navigate(['BookDetails', id]);
+    this.router.navigate(['/BookDetails', id]);
   }
-  onDelete(id: string){
+  onDelete(id: string) {
     this.bookService.deleteBook(id);
     this.bookService.fetchBooks();
   }

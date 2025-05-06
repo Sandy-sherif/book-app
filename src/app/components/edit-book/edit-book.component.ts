@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { book } from '../../Models/book.interface';
 import { BookService } from '../../services/book.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -16,7 +16,8 @@ export class EditBookComponent implements OnInit {
 
   constructor(
     private bookService: BookService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) {}
   ngOnInit(): void {
     console.log('hello');
@@ -35,5 +36,6 @@ export class EditBookComponent implements OnInit {
 
   onEdit() {
     this.bookService.editBook(this.book, this.id);
+    this.router.navigate(['/BookList']);
   }
 }

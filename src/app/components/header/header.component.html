@@ -1,12 +1,19 @@
 <div class="sticky-header w-100">
   <div class="row align-items-center mb-3 w-100">
-    <div class="col-12 col-md-6 mb-2 mb-md-0 align-items-center d-flex justify-content-between w-100 ">
+    <div
+      class="col-12 col-md-6 mb-2 mb-md-0 align-items-center d-flex justify-content-between w-100"
+    >
       <h1 class="text-center text-md-start title">Book App</h1>
-        <ul class=" mb-2 mb-md-0 align-items-center d-flex justify-content-between"  type="none">
-          <li class="m-2"><a routerLink="/BookList" *ngIf="isAuthenticated">Books List</a></li>
-          <li><a *ngIf="isAuthenticated" (click)="onLogOut()">Log Out</a></li>
-          <li><a routerLink="/auth" *ngIf="!isAuthenticated">Sign Up</a></li>
-        </ul>
+      <ul
+        class="mb-2 mb-md-0 align-items-center d-flex justify-content-between"
+        type="none"
+      >
+        <li class="m-2">
+          <a routerLink="/BookList" *ngIf="isAuthenticated">Books List</a>
+        </li>
+        <li><a *ngIf="isAuthenticated" (click)="onLogOut()">Log Out</a></li>
+        <li><a routerLink="/auth" *ngIf="!isAuthenticated">Sign Up</a></li>
+      </ul>
     </div>
   </div>
 </div>

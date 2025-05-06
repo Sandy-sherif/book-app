@@ -7,14 +7,32 @@ import { EditBookComponent } from './components/edit-book/edit-book.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { AuthComponent } from './components/auth/auth.component';
 
+import { authGuard } from './guards/auth.guard';
+
 export const routes: Routes = [
-
-
-    {path: '', pathMatch: "full", redirectTo : 'auth'},
-    {path: 'BookList', component: BookListComponent},
-    {path: 'addBook', component: AddBookComponent},
-    {path: 'editBook/:id', component: EditBookComponent},
-    {path: 'BookDetails/:id', component: BookDetailComponent},
-    {path: 'auth', component: AuthComponent},
-    {path : '**', component: NotFoundComponent}
+  { path: '', pathMatch: 'full', redirectTo: 'auth' },
+  { path: 'auth', component: AuthComponent },
+  {
+    path: 'BookList',
+    component: BookListComponent,
+    /*  loadComponent: () =>
+      import('./components/book-list-component/book-list.component').then(
+        (obj) => obj.BookListComponent
+      ), 
+       loadChildren: () =>
+        import('./modules/book/book.module').then((m) => m.BookModule),
+       */
+  },
+  { path: 'addBook', component: AddBookComponent, canActivate: [authGuard] },
+  {
+    path: 'editBook/:id',
+    component: EditBookComponent,
+    canActivate: [authGuard],
+  },
+  {
+    path: 'BookDetails/:id',
+    component: BookDetailComponent,
+    canActivate: [authGuard],
+  },
+  { path: '**', component: NotFoundComponent },
 ];
