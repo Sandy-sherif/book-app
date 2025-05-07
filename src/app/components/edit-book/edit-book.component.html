@@ -1,4 +1,4 @@
-<form (ngSubmit)="onEdit()" #editForm="ngForm">
+<form (ngSubmit)="onEdit()" [formGroup]="bookForm">
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="title">Title</label>
@@ -8,11 +8,9 @@
         id="title"
         placeholder="Title"
         name="title"
-        #title="ngModel"
-        [(ngModel)]="book.title"
-        required
+        formControlName="title"
       />
-      @if(!title.valid && title.touched){
+      @if(!bookForm.get('title')?.valid && bookForm.get('title')?.touched){
         <span class="help-block">Please enter a title</span>
         }
     </div>
@@ -24,11 +22,9 @@
         id="author"
         placeholder="Author"
         name="author"
-        [(ngModel)]="book.author"
-        #author="ngModel"
-        required
+        formControlName="author"
       />
-      @if(!author.valid && author.touched){
+      @if(!bookForm.get('author')?.valid && bookForm.get('author')?.touched){
       <span class="help-block">Please enter a author</span>
       }
     </div>
@@ -43,11 +39,9 @@
       id="publicationYear"
       placeholder="1976"
       name="publicationYear"
-      [(ngModel)]="book.publicationYear"
-      #publicationYear="ngModel"
-      required
+      formControlName="publicationYear"
     />
-    @if(!publicationYear.valid && publicationYear.touched){
+    @if(!bookForm.get('publicationYear')?.valid && bookForm.get('publicationYear')?.touched){
     <span class="help-block">Please enter a valid publication year</span>
     }
   </div>
@@ -55,10 +49,8 @@
     <select
       class="custom-select"
       name="genre"
-      [(ngModel)]="book.genre"
-      #genre="ngModel"
+      formControlName="genre"
       multiple
-      required
     >
       <option value="">Select Genre:</option>
       <option value="Fiction">Fiction</option>
@@ -67,7 +59,7 @@
       <option value="Adventure">Adventure</option>
       <option value="Fantasy">Fantasy</option>
     </select>
-    @if(!genre.valid && genre.touched){
+    @if(!bookForm.get('genre')?.valid && bookForm.get('genre')?.touched){
       <span class="help-block">Please select genre</span>
       }
   </div>
@@ -78,13 +70,11 @@
       id="description"
       rows="3"
       name="description"
-      [(ngModel)]="book.description"
-      #description="ngModel"
-      ngModel
+      formControlName="description"
     ></textarea>
-    @if(!description.valid && description.touched){
+    @if(!bookForm.get('description')?.valid && bookForm.get('description')?.touched){
     <span class="help-block">Please enter a desription</span>
     }
   </div>
-  <button type="submit" class="btn btn-primary">Edit</button>
+  <button [disabled]="!bookForm.valid" type="submit" class="btn btn-primary">Edit</button>
 </form>

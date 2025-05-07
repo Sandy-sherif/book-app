@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { BookDetailComponent } from '../../components/book-detail-component/book-detail.component';
 import { AddBookComponent } from '../../components/add-book/add-book.component';
@@ -18,7 +18,7 @@ import { BookListComponent } from '../../components/book-list-component/book-lis
     EditBookComponent,
     FilterPipe,
   ],
-  imports: [SharedModule, FormsModule, CommonModule, RouterModule],
+  imports: [SharedModule, FormsModule, CommonModule, RouterModule, ReactiveFormsModule],
   providers: [],
 })
 export class BookModule {}
