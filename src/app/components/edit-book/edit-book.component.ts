@@ -73,7 +73,7 @@ export class EditBookComponent implements OnInit {
       this.bookService.editBook(bookData, this.id).subscribe({
         next: () => {
           this.router.navigate(['/BookList']);
-          this.toastr.success('Book edited successfully 😊');
+          this.toastr.success('Book details updated successfully 😊');
         },
         error: (err) => {
           this.toastr.error(err.error.error);

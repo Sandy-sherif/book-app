@@ -2,9 +2,9 @@
   <button type="button" class="btn btn-primary" routerLink="/addBook">
     Add Book
   </button>
-  <div class="input-group mb-3">
-    <span class="input-group-text" id="basic-addon1">🔎</span>
+  <div class="input-group d-flex flex-row-reverse">
     <input class="input-group-text" id="search" placeholder="Search..." name="search" type="text" [(ngModel)]="filteredTitle" />
+    <span class="input-group-text" id="basic-addon1">🔎</span>
   </div>
 </div>
 

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map, retry } from 'rxjs/operators';
 import { book } from '../Models/book.interface';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -13,9 +14,7 @@ export class BookService {
 
   fetchBooks() {
     return this.http
-      .get<{ [key: string]: book }>(
-        'https://book-app-48750-default-rtdb.firebaseio.com/books.json'
-      )
+      .get<{ [key: string]: book }>(`${environment.url}.json`)
       .pipe(
         retry(3),
         map((responseData) => {
@@ -30,23 +29,13 @@ export class BookService {
       );
   }
   addBook(bookData: book) {
-    return this.http.post(
-      'https://book-app-48750-default-rtdb.firebaseio.com/books.json',
-      bookData
-    );
+    return this.http.post(`${environment.url}.json`, bookData);
   }
 
   editBook(bookData: book, id: string) {
-    return this.http.put(
-      'https://book-app-48750-default-rtdb.firebaseio.com/books/' +
-        id +
-        '.json',
-      bookData
-    );
+    return this.http.put(`${environment.url}/${id}.json`, bookData);
   }
   deleteBook(id: string) {
-    return this.http.delete(
-      'https://book-app-48750-default-rtdb.firebaseio.com/books/' + id + '.json'
-    );
+    return this.http.delete(`${environment.url}/${id}.json`);
   }
 }
