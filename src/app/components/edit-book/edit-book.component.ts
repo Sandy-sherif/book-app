@@ -3,6 +3,7 @@ import { book } from '../../Models/book.interface';
 import { BookService } from '../../services/book.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-edit-book',
@@ -30,7 +31,8 @@ export class EditBookComponent implements OnInit {
   constructor(
     private bookService: BookService,
     private activatedRoute: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private toastr: ToastrService
   ) {}
   ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe((param) => {
@@ -55,8 +57,6 @@ export class EditBookComponent implements OnInit {
   }
 
   onEdit() {
-    console.log(this.bookForm.value);
-
     if (this.bookForm.valid) {
       const formValue = this.bookForm.value;
 
@@ -70,9 +70,15 @@ export class EditBookComponent implements OnInit {
         coverImage: formValue.coverImage!,
       };
 
-      this.bookService.editBook(bookData, this.id);
+      this.bookService.editBook(bookData, this.id).subscribe({
+        next: () => {
+          this.router.navigate(['/BookList']);
+          this.toastr.success('Book edited successfully 😊');
+        },
+        error: (err) => {
+          this.toastr.error(err.error.error);
+        },
+      });
     }
-
-    this.router.navigate(['/BookList']);
   }
 }

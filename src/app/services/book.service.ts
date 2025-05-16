@@ -12,7 +12,7 @@ export class BookService {
   constructor(private http: HttpClient) {}
 
   fetchBooks() {
-    this.http
+    return this.http
       .get<{ [key: string]: book }>(
         'https://book-app-48750-default-rtdb.firebaseio.com/books.json'
       )
@@ -27,65 +27,26 @@ export class BookService {
           }
           return booksArray;
         })
-      )
-      .subscribe({
-        next: (response) => {
-          this.books = response;
-          console.log(this.books);
-        },
-        error: (err) => {
-          alert(err);
-        },
-      });
+      );
   }
   addBook(bookData: book) {
-    this.http
-      .post(
-        'https://book-app-48750-default-rtdb.firebaseio.com/books.json',
-        bookData
-      )
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-        },
-        error: (err) => {
-          console.log(err);
-          alert(err);
-        },
-      });
+    return this.http.post(
+      'https://book-app-48750-default-rtdb.firebaseio.com/books.json',
+      bookData
+    );
   }
 
   editBook(bookData: book, id: string) {
-    return this.http
-      .put(
-        'https://book-app-48750-default-rtdb.firebaseio.com/books/' +
-          id +
-          '.json',
-        bookData
-      )
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-        },
-        error: (err) => {
-          alert(err);
-        },
-      });
+    return this.http.put(
+      'https://book-app-48750-default-rtdb.firebaseio.com/books/' +
+        id +
+        '.json',
+      bookData
+    );
   }
   deleteBook(id: string) {
-    return this.http
-      .delete(
-        'https://book-app-48750-default-rtdb.firebaseio.com/books/' +
-          id +
-          '.json'
-      )
-      .subscribe({
-        next: (response) => {
-          console.log(response);
-        },
-        error: (err) => {
-          alert(err);
-        },
-      });
+    return this.http.delete(
+      'https://book-app-48750-default-rtdb.firebaseio.com/books/' + id + '.json'
+    );
   }
 }
