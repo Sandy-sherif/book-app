@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   user = new BehaviorSubject<User | null>(null);
+  private tokenExpirationTimer : any;
   constructor(private http: HttpClient, private router: Router) {}
 
   signUp(email: string, password: string) {
@@ -40,6 +41,7 @@ export class AuthService {
       .pipe(
         catchError(this.handleError),
         tap((resData) => {
+          console.log(resData);
           this.handleAuthentication(
             resData.email,
             resData.localId,
@@ -48,6 +50,42 @@ export class AuthService {
           );
         })
       );
+  }
+
+  autoLogin() {
+    const userData = JSON.parse(localStorage.getItem('user') || '');
+    if (!userData) {
+      return;
+    }
+
+    const loadedUser = new User(
+      userData.email,
+      userData.id,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
+    if (loadedUser.token) {
+      this.user.next(loadedUser);
+      const expirationDuration = new Date(userData._tokenExpirationDate).getTime() - new Date().getTime();
+      this.autoLogOut(expirationDuration);
+    }
+  } 
+
+  autoLogOut(expirationDuration: number){
+    this.tokenExpirationTimer = setTimeout(() => {
+      this.logOut();
+    },expirationDuration)
+
+  }
+
+  logOut() {
+    this.user.next(null);
+    this.router.navigate(['/auth']);
+    localStorage.removeItem('user');
+    if(this.tokenExpirationTimer){
+      clearTimeout(this.tokenExpirationTimer);
+    }
+    this.tokenExpirationTimer = null;
   }
 
   private handleAuthentication(
@@ -59,14 +97,19 @@ export class AuthService {
     const expirationDate = new Date(new Date().getTime() + +expiresIn * 1000);
     const user = new User(email, localId, idToken, expirationDate);
     this.user.next(user);
+    this.autoLogOut(+expiresIn * 1000);
+    localStorage.setItem('user', JSON.stringify(user));
   }
 
-  private handleError(errRes: HttpErrorResponse) {
+  private handleError(errRes: ErrorEvent) {
     let errorMessage = 'An unkown error occured';
-    if (!errRes.error || !errRes.error.error) {
+    if (!errRes.error.error.errors) {
       return throwError(errorMessage);
     }
-    switch (errRes.error.error.message) {
+    switch (errRes.error.error.errors[0].message) {
+      case 'INVALID_LOGIN_CREDENTIALS':
+        errorMessage = 'Invalid email or password. Please try again.';
+        break;
       case 'EMAIL_EXISTS':
         errorMessage = 'This email already exist';
         break;
@@ -83,8 +126,5 @@ export class AuthService {
     return throwError(errorMessage);
   }
 
-  logOut() {
-    this.user.next(null);
-    this.router.navigate(['/auth']);
-  }
+  
 }

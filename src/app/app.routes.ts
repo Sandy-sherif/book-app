@@ -15,13 +15,9 @@ export const routes: Routes = [
   {
     path: 'BookList',
     component: BookListComponent,
-    /*  loadComponent: () =>
-      import('./components/book-list-component/book-list.component').then(
-        (obj) => obj.BookListComponent
-      ), 
-       loadChildren: () =>
-        import('./modules/book/book.module').then((m) => m.BookModule),
-       */
+    loadChildren: () =>
+      import('./modules/book/book.module').then((m) => m.BookModule),
+    canActivate: [authGuard],
   },
   { path: 'addBook', component: AddBookComponent, canActivate: [authGuard] },
   {

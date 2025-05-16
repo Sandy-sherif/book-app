@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-auth',
@@ -13,7 +14,7 @@ export class AuthComponent {
   isLoginMode = true;
   isLoading = false;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router, private toaster: ToastrService) {}
 
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
@@ -30,11 +31,11 @@ export class AuthComponent {
         next: (res) => {
           console.log(res);
           this.isLoading = false;
+          this.toaster.success("Welcome back!😊 You have successfully logged in.")
           this.router.navigate(['/BookList']);
         },
         error: (err) => {
-          alert(err);
-
+          this.toaster.error(err);
           this.isLoading = false;
         },
       });
@@ -43,9 +44,11 @@ export class AuthComponent {
         next: (res) => {
           console.log(res);
           this.isLoading = false;
+          this.toaster.success("You did it!😊 Your account is ready. Let’s get started!")
+          this.router.navigate(['/BookList']);
         },
         error: (err) => {
-          alert(err);
+          this.toaster.error(err);
           this.isLoading = false;
         },
       });

@@ -12,7 +12,7 @@
           <a routerLink="/BookList" *ngIf="isAuthenticated">Books List</a>
         </li>
         <li><a *ngIf="isAuthenticated" (click)="onLogOut()">Log Out</a></li>
-        <li><a routerLink="/auth" *ngIf="!isAuthenticated">Sign Up</a></li>
+        <li><a routerLink="/auth" *ngIf="!isAuthenticated">Log In</a></li>
       </ul>
     </div>
   </div>

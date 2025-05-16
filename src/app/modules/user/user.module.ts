@@ -17,11 +17,12 @@ import { AppComponent } from '../../app.component';
 import { AuthInterceptorService } from '../../interceptors/auth-interceptor.service';
 import { NotFoundComponent } from '../../components/not-found/not-found.component';
 import { AuthComponent } from '../../components/auth/auth.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [HeaderComponent, AppComponent, AuthComponent, NotFoundComponent],
   imports: [
-    BrowserModule,
     RouterModule.forRoot(routes),
     RouterOutlet,
     BookModule,
@@ -29,6 +30,8 @@ import { AuthComponent } from '../../components/auth/auth.component';
     FormsModule,
     CommonModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   bootstrap: [AppComponent],
   providers: [
