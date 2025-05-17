@@ -5,10 +5,3 @@
   display: flex;
   align-items: center;
 }
-.btn-color{
-  background-color: #7b006b;
-  color: white;
-}
-.btn-color:hover{
-  background-color: #944d8a;
-}

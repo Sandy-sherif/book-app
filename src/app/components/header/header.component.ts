@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Subscription } from 'rxjs';
+import { BookService } from '../../services/book.service';
 
 @Component({
   selector: 'app-header',
@@ -12,9 +13,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
   isAuthenticated = false;
   userSub: Subscription = new Subscription();
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    public bookService: BookService
+  ) {}
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.userSub = this.authService.user.subscribe((user) => {
       this.isAuthenticated = !!user;
       console.log(!!user);

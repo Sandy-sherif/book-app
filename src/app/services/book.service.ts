@@ -9,6 +9,7 @@ import { environment } from '../../environments/environment.development';
 })
 export class BookService {
   books!: book[];
+  filteredTitle = '';
 
   constructor(private http: HttpClient) {}
 

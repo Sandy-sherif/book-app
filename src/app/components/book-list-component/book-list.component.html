@@ -1,15 +1,6 @@
-<div class="d-flex justify-content-between">
-  <button type="button" class="btn btn-primary" routerLink="/addBook">
-    Add Book
-  </button>
-  <div class="input-group d-flex flex-row-reverse">
-    <input class="input-group-text" id="search" placeholder="Search..." name="search" type="text" [(ngModel)]="filteredTitle" />
-    <span class="input-group-text" id="basic-addon1">🔎</span>
-  </div>
-</div>
-
 <app-card>
-  @for(book of bookService.books | filter:filteredTitle:'title'; track book.id){
+  @for(book of bookService.books | filter:bookService.filteredTitle:'title';
+  track book.id){
   <div class="card w-25 h-25">
     <img
       class="card-img-top rounded w-75 h-75"
@@ -19,7 +10,7 @@
     <div class="card-body">
       <h5 class="card-title">{{ book.title }}</h5>
       <p class="card-text">By {{ book.author }}</p>
-      <a (click)="openDetails(book.id)" class="btn btn-color">For Details</a>
+      <a (click)="openDetails(book.id)" class="btn btn-primary">For Details</a>
       <a (click)="onDelete(book.id)" class="btn btn-danger">Delete</a>
     </div>
   </div>

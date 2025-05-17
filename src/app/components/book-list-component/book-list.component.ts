@@ -10,8 +10,6 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './book-list.component.css',
 })
 export class BookListComponent implements OnInit {
-  filteredTitle = '';
-
   constructor(
     public bookService: BookService,
     private router: Router,
@@ -34,7 +32,14 @@ export class BookListComponent implements OnInit {
   onDelete(id: string) {
     this.bookService.deleteBook(id).subscribe({
       next: () => {
-        this.bookService.fetchBooks();
+        this.bookService.fetchBooks().subscribe({
+          next: (res) => {
+            this.bookService.books = res;
+          },
+          error: (err) => {
+            this.toastr.error(err.error.error);
+          },
+        });
         this.toastr.success('Book deleted successfully 😊');
       },
       error: (err) => {

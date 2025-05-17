@@ -1,19 +1,62 @@
-<div class="sticky-header w-100">
-  <div class="row align-items-center mb-3 w-100">
-    <div
-      class="col-12 col-md-6 mb-2 mb-md-0 align-items-center d-flex justify-content-between w-100"
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <button
+      data-mdb-collapse-init
+      class="navbar-toggler"
+      type="button"
+      data-mdb-target="#navbarTogglerDemo03"
+      aria-controls="navbarTogglerDemo03"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
     >
-      <h1 class="text-center text-md-start title">Book App</h1>
-      <ul
-        class="mb-2 mb-md-0 align-items-center d-flex justify-content-between"
-        type="none"
-      >
-        <li class="m-2">
-          <a routerLink="/BookList" *ngIf="isAuthenticated">Books List</a>
+      <i class="fas fa-bars"></i>
+    </button>
+    <h3>Book App</h3>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/BookList"
+            *ngIf="isAuthenticated"
+            >Home</a
+          >
         </li>
-        <li><a *ngIf="isAuthenticated" (click)="onLogOut()">Log Out</a></li>
-        <li><a routerLink="/auth" *ngIf="!isAuthenticated">Log In</a></li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/addBook" *ngIf="isAuthenticated"
+            >Add Book</a
+          >
+        </li>
       </ul>
+      <div class="d-flex input-group w-auto" *ngIf="isAuthenticated">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Search..."
+          aria-label="Search"
+          [(ngModel)]="bookService.filteredTitle"
+        />
+        <span class="input-group-text" id="basic-addon1">🔎</span>
+        <button
+          data-mdb-ripple-init
+          type="button"
+          class="btn btn-link px-3 me-2"
+          routerLink="/auth"
+          *ngIf="!isAuthenticated"
+        >
+          Log In
+        </button>
+        <button
+          data-mdb-ripple-init
+          type="button"
+          class="btn btn-link px-3 me-2"
+          *ngIf="isAuthenticated"
+          (click)="onLogOut()"
+        >
+          Log Out
+        </button>
+      </div>
     </div>
   </div>
-</div>
+</nav>
