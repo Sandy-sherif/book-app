@@ -37,6 +37,7 @@ export class AuthComponent {
         error: (err) => {
           this.toaster.error(err);
           this.isLoading = false;
+          form.reset();
         },
       });
     } else {
@@ -50,11 +51,10 @@ export class AuthComponent {
         error: (err) => {
           this.toaster.error(err);
           this.isLoading = false;
+          form.reset();
         },
       });
     }
 
-    console.log(form.value);
-    form.reset();
   }
 }

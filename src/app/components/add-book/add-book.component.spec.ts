@@ -4,6 +4,7 @@ import { BookService } from '../../services/book.service';
 import { ToastrService } from 'ngx-toastr';
 import { FormsModule, NgForm } from '@angular/forms';
 import { of, throwError } from 'rxjs';
+import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
 
 describe('AddBookComponent', () => {
   let component: AddBookComponent;
@@ -16,7 +17,7 @@ describe('AddBookComponent', () => {
     const toastSpy = jasmine.createSpyObj('ToastrService', ['success', 'error']);
 
     await TestBed.configureTestingModule({
-      declarations: [AddBookComponent],
+      declarations: [AddBookComponent, LoadingSpinnerComponent],
       imports: [FormsModule],
       providers: [
         { provide: BookService, useValue: bookSpy },

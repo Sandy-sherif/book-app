@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FormsModule, NgForm } from '@angular/forms';
 import { of, throwError } from 'rxjs';
 import { AuthResponseData } from '../../Models/auth-response-data.interface';
+import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
 
 describe('AuthComponent', () => {
   let component: AuthComponent;
@@ -32,7 +33,7 @@ describe('AuthComponent', () => {
     ]);
 
     await TestBed.configureTestingModule({
-      declarations: [AuthComponent],
+      declarations: [AuthComponent, LoadingSpinnerComponent],
       imports: [FormsModule],
       providers: [
         { provide: AuthService, useValue: authSpy },

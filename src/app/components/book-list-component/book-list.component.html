@@ -1,9 +1,10 @@
+<app-loading-spinner [isLoading]="isLoading">
 <app-card>
   @for(book of bookService.books | filter:bookService.filteredTitle:'title';
   track book.id){
-  <div class="card w-25 h-25">
+  <div class="card col-3">
     <img
-      class="card-img-top rounded w-75 h-75"
+      class="card-img-top rounded"
       alt="cover image"
       [src]="book.coverImage | slice : 12"
     />
@@ -16,3 +17,5 @@
   </div>
   }
 </app-card>
+
+</app-loading-spinner>

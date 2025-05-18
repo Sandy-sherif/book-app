@@ -7,6 +7,7 @@ import { of, throwError } from 'rxjs';
 import { book } from '../../Models/book.interface';
 import { CardComponent } from '../shared/card/card.component';
 import { FilterPipe } from '../../pipes/filter/filter.pipe';
+import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
 
 describe('BookListComponent', () => {
   let component: BookListComponent;
@@ -40,7 +41,7 @@ describe('BookListComponent', () => {
     ]);
 
     await TestBed.configureTestingModule({
-      declarations: [BookListComponent, CardComponent, FilterPipe],
+      declarations: [BookListComponent, CardComponent, FilterPipe, LoadingSpinnerComponent],
       providers: [
         { provide: BookService, useValue: bookSpy },
         { provide: Router, useValue: routerMock },

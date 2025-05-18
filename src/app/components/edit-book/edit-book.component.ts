@@ -13,7 +13,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class EditBookComponent implements OnInit {
   id!: string;
-
+  isLoading = false;
   bookForm = new FormGroup({
     title: new FormControl('', Validators.required),
     id: new FormControl('', Validators.required),
@@ -69,14 +69,16 @@ export class EditBookComponent implements OnInit {
         description: formValue.description!,
         coverImage: formValue.coverImage!,
       };
-
+      this.isLoading = true;
       this.bookService.editBook(bookData, this.id).subscribe({
         next: () => {
           this.router.navigate(['/BookList']);
           this.toastr.success('Book details updated successfully 😊');
+          this.isLoading = false;
         },
         error: (err) => {
           this.toastr.error(err.error.error);
+          this.isLoading = false;
         },
       });
     }

@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { ReactiveFormsModule } from '@angular/forms';
 import { of, throwError } from 'rxjs';
 import { book } from '../../Models/book.interface';
+import { LoadingSpinnerComponent } from '../shared/loading-spinner/loading-spinner.component';
 
 describe('EditBookComponent', () => {
   let component: EditBookComponent;
@@ -30,7 +31,7 @@ describe('EditBookComponent', () => {
     const toastMock = jasmine.createSpyObj('ToastrService', ['success', 'error']);
 
     await TestBed.configureTestingModule({
-      declarations: [EditBookComponent],
+      declarations: [EditBookComponent, LoadingSpinnerComponent],
       imports: [ReactiveFormsModule],
       providers: [
         { provide: BookService, useValue: bookSpy },

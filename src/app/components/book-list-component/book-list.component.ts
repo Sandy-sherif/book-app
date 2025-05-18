@@ -10,6 +10,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './book-list.component.css',
 })
 export class BookListComponent implements OnInit {
+  isLoading = false;
   constructor(
     public bookService: BookService,
     private router: Router,
@@ -17,12 +18,15 @@ export class BookListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.isLoading = true;
     this.bookService.fetchBooks().subscribe({
       next: (res) => {
         this.bookService.books = res;
+        this.isLoading = false;
       },
       error: (err) => {
         this.toastr.error(err.error.error);
+        this.isLoading = false;
       },
     });
   }
@@ -30,20 +34,24 @@ export class BookListComponent implements OnInit {
     this.router.navigate(['/BookDetails', id]);
   }
   onDelete(id: string) {
+    this.isLoading = true;
     this.bookService.deleteBook(id).subscribe({
       next: () => {
         this.bookService.fetchBooks().subscribe({
           next: (res) => {
             this.bookService.books = res;
+            this.isLoading = false;
           },
           error: (err) => {
             this.toastr.error(err.error.error);
+            this.isLoading = false;
           },
         });
         this.toastr.success('Book deleted successfully 😊');
       },
       error: (err) => {
         this.toastr.error(err.error.error);
+        this.isLoading = false;
       },
     });
   }
