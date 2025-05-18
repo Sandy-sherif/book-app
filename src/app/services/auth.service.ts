@@ -12,7 +12,6 @@ import { environment } from '../../environments/environment.development';
 export class AuthService {
   user = new BehaviorSubject<User | null>(null);
   private tokenExpirationTimer: any;
-  private key = 'AIzaSyCINNEfaRKVUz4Vz-HbaExMQ7HkmigHxvQ';
   constructor(private http: HttpClient, private router: Router) {}
 
   signUp(email: string, password: string) {
